@@ -7,13 +7,18 @@ router.get('/', (req, res) => {
     db.getUser()
     .then((val) => {
         console.log(val);
-        res.send('all the users');
+        // res.send('all the users');
+        res.json(val);
     })
     .catch((err) => res.status(400).send(err))
 })
 
 router.post('/', (req, res) => {
 // create single user
+// {
+//     username: 'george',
+//     password: 'george'
+// }
     db.postUser()
     .then (val => {
         console.log(val);

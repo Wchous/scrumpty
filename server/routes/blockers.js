@@ -7,17 +7,18 @@ router.get('/', (req, res) => {
     db.getBlockers()
     .then ((val) => {
         console.log(val);
-        res.send('all the blockers');        
+        // res.send('all the blockers');
+        res.json(val);        
     })
     .catch((err) => res.status(400).send(err))
 })
 
 router.post('/', (req, res) => {
 // create single blocker
-    db.postBlocker()
+    db.postBlocker(req.body)
     .then ((val) => {
         console.log(val);
-        res.send();
+        res.send(val);
     })
     .catch((err) => res.status(400).send(err))
 })

@@ -14,40 +14,41 @@ module.exports.getUser = () => {
     return knex.select('*').from('users');
 };
 
-module.exports.postUser = () => {
-    return knex('users').insert({
-        username: 'george',                   //Update to pass in object
-        password: 'george'
-    })
+module.exports.postUser = (userObj) => {
+    // {
+    //     username: 'george',                   
+    //     password: 'george'
+    // }
+    return knex('users').insert(userObj)
 };
 
 module.exports.getTasks = () => {
     return knex.select('*').from('tasks');
 }
 
-module.exports.postTasks = () => {
-    return knex('tasks').insert({
-        title: 'Add a feature',
-        description: 'Add a really really hard feature'
-    })
+module.exports.postTasks = (taskObj) => {
+    // {
+    //     title: 'Add a feature',
+    //     description: 'Add a really really hard feature'
+    // }
+    return knex('tasks').insert(taskObj)
 }
 
-module.exports.updateTask = () => {
-    return knex('tasks').where({
-        id: 1000
-    }).update({
-        difficulty: 1                           //Update to pass in an object from the function argument
-    })
+module.exports.updateTask = (taskObj) => {
+    return knex('tasks')
+        .where({id: taskObj.id})
+        .update(taskObj);
 }
 
 module.exports.getBlockers = () => {
     return knex.select('*').from('blockers');
 }
 
-module.exports.postBlocker = () => {
-    return knex('blockers').insert({
-        title:'Broken',
-        description:'This is hard',
-        task_id: 1000
-    })
+module.exports.postBlocker = (blockerObj) => {
+    // {
+    //     title:'Broken',
+    //     description:'This is hard',
+    //     task_id: 1000
+    // }
+    return knex('blockers').insert(blockerObj)
 }

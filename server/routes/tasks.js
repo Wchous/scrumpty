@@ -7,14 +7,15 @@ router.get('/', (req, res) => {
     db.getTasks()
     .then(val => {
         console.log(val)
-        res.send('all the tasks');
+        // res.send('all the tasks');
+        res.json(val);
     })
     .catch((err) => res.status(400).send(err))
 });
 
 router.post('/', (req, res) => {
 // create single task
-    db.postTasks()
+    db.postTasks(req.body)
     .then(val => {
         console.log(val);
         res.send(val);
@@ -23,10 +24,10 @@ router.post('/', (req, res) => {
 });
 
 router.put('/', (req, res) => {
-    db.updateTask()
+    db.updateTask(req.body)
     .then(val => {
         console.log(val);
-        res.send();
+        res.send(val);
     })
     .catch((err) => res.status(400).send(err))
 });
